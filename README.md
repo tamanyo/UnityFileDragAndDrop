@@ -1,4 +1,4 @@
-# Unity Windows File Drag and Drop
+kochirawo# Unity Windows File Drag and Drop
 
 このUnityコンポーネントは、Windowsプラットフォーム上でUnityアプリケーションにファイルのドラッグアンドドロップ機能を追加します。
 
@@ -82,4 +82,91 @@ public class FileProcessor : MonoBehaviour
 ## 作者
 
 [tamanyo]
+
+
+# Unity Windows File Drag and Drop
+
+This Unity component adds file drag-and-drop functionality to Unity applications on the Windows platform.
+
+## Features
+
+- Handles file drag-and-drop operations on Windows platforms
+- Supports simultaneous dropping of multiple files
+- Allows event configuration from the Inspector using UnityEvent
+- Enables dynamic event subscription from scripts using UnityAction
+- Proper resource management and cleanup
+
+## Requirements
+
+- Unity 2019.4 or later
+- Windows platform
+
+## Installation
+
+1. Clone this repository or download the `FileDragAndDrop.cs` file.
+2. Place the downloaded file in the `Assets` folder of your Unity project.
+
+## Usage
+
+1. In the Unity Editor, create an empty GameObject.
+2. Attach the `FileDragAndDrop` component to the created GameObject.
+3. Handle drag-and-drop events using one of the following methods:
+   - Configure the `OnFilesDrop` event in the Inspector
+   - Use the `SetOnFilesDropAction` method from a script to subscribe to events
+
+### Example of Setting in the Inspector
+
+1. Set the method for processing files in the `OnFilesDrop` event of the `FileDragAndDrop` component using drag and drop in the Inspector.
+
+### Example of Using in a Script
+
+```csharp
+public class FileProcessor : MonoBehaviour
+{
+    private FileDragAndDrop fileDragAndDrop;
+
+    void Start()
+    {
+        fileDragAndDrop = GetComponent<FileDragAndDrop>();
+        fileDragAndDrop.SetOnFilesDropAction(ProcessDroppedFiles);
+    }
+
+    void OnDisable()
+    {
+        if (fileDragAndDrop != null)
+        {
+            fileDragAndDrop.RemoveOnFilesDropAction();
+        }
+    }
+
+    private void ProcessDroppedFiles(List<string> files)
+    {
+        Debug.Log($"Processing {files.Count} dropped files...");
+        foreach (string file in files)
+        {
+            // Implement file processing logic here
+            Debug.Log($"Processing file: {file}");
+        }
+    }
+}
+```
+
+## Notes
+
+- This component is specifically for the Windows platform.
+- Ensure the "Allow 'unsafe' Code" option is enabled in the Unity Editor settings.
+- Verify that the correct target platform (Windows Standalone) is selected in the build settings.
+
+## License
+
+This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for more details.
+
+## Contribution
+
+For bug reports or feature requests, please use the GitHub Issues. Pull requests are also welcome.
+
+## Author
+
+[tamanyo]
+
 
