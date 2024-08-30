@@ -1,4 +1,4 @@
-kochirawo# Unity Windows File Drag and Drop
+# Unity Windows File Drag and Drop
 
 このUnityコンポーネントは、Windowsプラットフォーム上でUnityアプリケーションにファイルのドラッグアンドドロップ機能を追加します。
 
